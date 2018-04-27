@@ -1,4 +1,4 @@
-package com.evgeniykruglov.neo4j.sample;
+package com.evgeniykruglov.neo4j.sample.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

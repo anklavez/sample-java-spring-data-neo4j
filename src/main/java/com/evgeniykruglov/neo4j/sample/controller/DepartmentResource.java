@@ -1,6 +1,6 @@
 package com.evgeniykruglov.neo4j.sample.controller;
 
-import com.evgeniykruglov.neo4j.sample.HeaderUtil;
+import com.evgeniykruglov.neo4j.sample.util.HeaderUtil;
 import com.evgeniykruglov.neo4j.sample.service.DepartmentService;
 import com.evgeniykruglov.neo4j.sample.service.dto.DepartmentDTO;
 import org.slf4j.Logger;
