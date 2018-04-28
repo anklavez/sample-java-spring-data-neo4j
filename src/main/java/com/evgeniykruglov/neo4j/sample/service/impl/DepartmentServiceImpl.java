@@ -23,7 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService{
         this.departmentRepository = departmentRepository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
     public DepartmentDTO createDepartment(DepartmentDTO departmentDTO) {
         Department department = new Department(departmentDTO.getName());

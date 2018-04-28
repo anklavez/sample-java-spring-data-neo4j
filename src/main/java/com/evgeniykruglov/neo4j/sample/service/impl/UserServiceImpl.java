@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         this.session = session;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
     public UserDTO createUser(UserDTO userDTO) {
         Optional<Department> department = departmentRepository.findById(Long.valueOf(userDTO.getDepartmentId()));
@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<UserDTO> findUsers(String departmentId, String firstName, String lastName) {
         Map<String, String> parameters = new HashMap<>();
