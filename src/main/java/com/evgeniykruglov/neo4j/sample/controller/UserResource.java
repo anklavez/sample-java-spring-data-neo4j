@@ -35,11 +35,11 @@ public class UserResource {
     @PostMapping("/user")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) throws URISyntaxException {
         if (userDTO.getDepartmentId() == null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "departmentId is null", "User should have departmentId")).body(null);
+            return ResponseUtil.createBadRequestResponse(ENTITY_NAME,"departmentId is null","User should have departmentId");
         }
         UserDTO result = userService.createUser(userDTO);
         if (result == null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "departmentId is not found", "Can't find provided departmentId")).body(null);
+            return ResponseUtil.createBadRequestResponse(ENTITY_NAME,"departmentId is not found","Can't find provided departmentId");
         }
         return ResponseEntity.created(new URI("/api/user" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId()))

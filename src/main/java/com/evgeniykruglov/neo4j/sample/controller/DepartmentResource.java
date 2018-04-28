@@ -3,6 +3,7 @@ package com.evgeniykruglov.neo4j.sample.controller;
 import com.evgeniykruglov.neo4j.sample.util.HeaderUtil;
 import com.evgeniykruglov.neo4j.sample.service.DepartmentService;
 import com.evgeniykruglov.neo4j.sample.service.dto.DepartmentDTO;
+import com.evgeniykruglov.neo4j.sample.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class DepartmentResource {
     @PostMapping("/department")
     public ResponseEntity<DepartmentDTO> createDepartment(@RequestBody DepartmentDTO departmentDTO) throws URISyntaxException {
         if (departmentDTO.getName() == null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "department name is null", "Department should have a name")).body(null);
+            return ResponseUtil.createBadRequestResponse(ENTITY_NAME,"department name is null","Department should have a name");
         }
         DepartmentDTO result = departmentService.createDepartment(departmentDTO);
         return ResponseEntity.created(new URI("/api/v1/" + result.getId()))

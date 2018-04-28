@@ -40,4 +40,9 @@ public class ResponseUtil {
         return maybeResponse.map(response -> ResponseEntity.ok().headers(header).body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    public static <T> ResponseEntity<T>  createBadRequestResponse(String entity, String errorKey, String defaultMessage){
+        return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(entity,
+                errorKey, defaultMessage)).body(null);
+    }
 }
