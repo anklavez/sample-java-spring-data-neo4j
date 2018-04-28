@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> findUsers(String departmentId, String firstName, String lastName) {
         Map<String, String> parameters = new HashMap<>();
         if (departmentId != null) parameters.put("ID(department) = %s",departmentId);
-        if (firstName != null) parameters.put("user.firstName = '%s'",firstName);
-        if (lastName != null) parameters.put("user.lastName = '%s'",lastName);
+        if (firstName != null) parameters.put("LOWER(user.firstName) CONTAINS LOWER('%s')",firstName);
+        if (lastName != null) parameters.put("LOWER(user.lastName) CONTAINS LOWER('%s')",lastName);
         String cypherQuery = SimpleCypherQueryBuilder.buildQuery("MATCH (user:User)-[:IN]->(department:Department)",parameters," RETURN user, department");
         Result result = session.query(cypherQuery, Collections.emptyMap());
         Iterator<Map<String, Object>> it = result.iterator();
