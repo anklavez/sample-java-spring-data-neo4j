@@ -18,7 +18,7 @@ import java.net.URISyntaxException;
  * @author Evgeniy Kruglov
  */
 @RestController
-@RequestMapping("")
+@RequestMapping("/api")
 public class DepartmentResource {
 
     private final Logger log = LoggerFactory.getLogger(DepartmentResource.class);
