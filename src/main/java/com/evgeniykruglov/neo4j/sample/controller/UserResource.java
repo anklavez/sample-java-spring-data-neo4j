@@ -6,6 +6,7 @@ import com.evgeniykruglov.neo4j.sample.service.dto.UserDTO;
 import com.evgeniykruglov.neo4j.sample.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,13 +25,10 @@ public class UserResource {
 
     private final Logger log = LoggerFactory.getLogger(UserResource.class);
 
-    private final UserService userService;
+    @Autowired
+    private  UserService userService;
 
     private static final String ENTITY_NAME = "user";
-
-    public UserResource(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping("/user")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) throws URISyntaxException {

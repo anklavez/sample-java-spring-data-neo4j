@@ -6,6 +6,7 @@ import com.evgeniykruglov.neo4j.sample.service.DepartmentService;
 import com.evgeniykruglov.neo4j.sample.service.dto.DepartmentDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +18,8 @@ public class DepartmentServiceImpl implements DepartmentService{
 
     private static final Logger log = LoggerFactory.getLogger(DepartmentServiceImpl.class);
 
-    private final DepartmentRepository departmentRepository;
-
-    public DepartmentServiceImpl(DepartmentRepository departmentRepository){
-        this.departmentRepository = departmentRepository;
-    }
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     @Transactional
     @Override
