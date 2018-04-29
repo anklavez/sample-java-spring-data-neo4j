@@ -24,6 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     @Transactional
     @Override
     public DepartmentDTO createDepartment(DepartmentDTO departmentDTO) {
+        log.debug("Request to create Department : {}", departmentDTO);
         Department department = new Department(departmentDTO.getName());
         departmentRepository.save(department);
         departmentDTO.setId(String.valueOf(department.getId()));

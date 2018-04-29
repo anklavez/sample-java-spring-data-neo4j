@@ -34,6 +34,7 @@ public class DepartmentResource {
 
     @PostMapping("/department")
     public ResponseEntity<DepartmentDTO> createDepartment(@RequestBody DepartmentDTO departmentDTO) throws URISyntaxException {
+        log.debug("REST request to create Department : {}", departmentDTO);
         if (departmentDTO.getName() == null) {
             return ResponseUtil.createBadRequestResponse(ENTITY_NAME,"department name is null","Department should have a name");
         }

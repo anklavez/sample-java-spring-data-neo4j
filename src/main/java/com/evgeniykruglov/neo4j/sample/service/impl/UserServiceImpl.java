@@ -24,7 +24,7 @@ import java.util.*;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final static Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
+    private final static Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserDTO createUser(UserDTO userDTO) {
+        log.debug("Request to create User : {}", userDTO);
         Optional<Department> department = departmentRepository.findById(Long.valueOf(userDTO.getDepartmentId()));
         if (department.isPresent()) {
             User user = new User(userDTO.getFirstName(), userDTO.getLastName());
@@ -52,6 +53,7 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     @Override
     public List<UserDTO> findUsers(String departmentId, String firstName, String lastName) {
+        log.debug("Request to find Users with deoartmentId: {}, firstName: {}, lastName: {}", departmentId, firstName, lastName);
         Map<String, String> parameters = new HashMap<>();
         if (departmentId != null) parameters.put("ID(department) = %s",departmentId);
         if (firstName != null) parameters.put("LOWER(user.firstName) CONTAINS LOWER('%s')",firstName);

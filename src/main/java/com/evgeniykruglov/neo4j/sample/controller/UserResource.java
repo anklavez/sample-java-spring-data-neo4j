@@ -32,6 +32,7 @@ public class UserResource {
 
     @PostMapping("/user")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) throws URISyntaxException {
+        log.debug("REST request to create User : {}", userDTO);
         if (userDTO.getDepartmentId() == null) {
             return ResponseUtil.createBadRequestResponse(ENTITY_NAME,"departmentId is null","User should have departmentId");
         }
@@ -47,6 +48,7 @@ public class UserResource {
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> findUsers(@RequestParam(required = false) String departmentId,
                                                    @RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName){
+        log.debug("REST request to find Users with departmentId: {} , firstName: {}, lastName: {}", departmentId,firstName,lastName);
         List<UserDTO> result = userService.findUsers(departmentId,firstName,lastName);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(result));
     }
