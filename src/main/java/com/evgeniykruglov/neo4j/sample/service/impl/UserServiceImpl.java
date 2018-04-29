@@ -11,6 +11,7 @@ import org.neo4j.ogm.model.Result;
 import org.neo4j.ogm.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,18 +25,14 @@ public class UserServiceImpl implements UserService {
 
     private final static Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    private final DepartmentRepository departmentRepository;
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
-    private final Session session;
-
-    public UserServiceImpl(UserRepository userRepository, DepartmentRepository departmentRepository,
-                           Session session) {
-        this.userRepository = userRepository;
-        this.departmentRepository = departmentRepository;
-        this.session = session;
-    }
+    @Autowired
+    private Session session;
 
     @Transactional
     @Override
