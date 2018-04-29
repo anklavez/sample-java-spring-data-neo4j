@@ -7,6 +7,7 @@ import com.evgeniykruglov.neo4j.sample.repository.UserRepository;
 import com.evgeniykruglov.neo4j.sample.service.UserService;
 import com.evgeniykruglov.neo4j.sample.service.dto.UserDTO;
 import com.evgeniykruglov.neo4j.sample.util.SimpleCypherQueryBuilder;
+import com.evgeniykruglov.neo4j.sample.util.Util;
 import org.neo4j.ogm.model.Result;
 import org.neo4j.ogm.session.Session;
 import org.slf4j.Logger;
@@ -57,25 +58,7 @@ public class UserServiceImpl implements UserService {
         if (lastName != null) parameters.put("LOWER(user.lastName) CONTAINS LOWER('%s')",lastName);
         String cypherQuery = SimpleCypherQueryBuilder.buildQuery("MATCH (user:User)-[:IN]->(department:Department)",parameters," RETURN user, department");
         Result result = session.query(cypherQuery, Collections.emptyMap());
-        Iterator<Map<String, Object>> it = result.iterator();
-        List<UserDTO> userDTOS = new ArrayList<>();
-        while (it.hasNext()){
-            Map<String, Object> object = it.next();
-            UserDTO userDTO = new UserDTO();
-            for(String key:object.keySet()){
-                if(key.equalsIgnoreCase("user")){
-                    User user = (User) object.get(key);
-                    userDTO.setFirstName(user.getFirstName());
-                    userDTO.setLastName(user.getLastName());
-                    userDTO.setId(String.valueOf(user.getId()));
-                }else if(key.equalsIgnoreCase("department")){
-                    Department department = (Department) object.get(key);
-                    userDTO.setDepartmentId(String.valueOf(department.getId()));
-                }
-            }
-            userDTOS.add(userDTO);
-        }
-        return userDTOS;
+        return Util.extractUserDTOFromSessionResult(result);
     }
 
 
