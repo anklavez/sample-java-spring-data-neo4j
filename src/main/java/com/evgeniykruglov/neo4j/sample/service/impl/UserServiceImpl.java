@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     @Override
     public List<UserDTO> findUsers(String departmentId, String firstName, String lastName) {
-        log.debug("Request to find Users with deoartmentId: {}, firstName: {}, lastName: {}", departmentId, firstName, lastName);
+        log.debug("Request to find Users with departmentId: {}, firstName: {}, lastName: {}", departmentId, firstName, lastName);
         Map<String, String> parameters = new HashMap<>();
         if (departmentId != null) parameters.put("ID(department) = %s",departmentId);
         if (firstName != null) parameters.put("LOWER(user.firstName) CONTAINS LOWER('%s')",firstName);

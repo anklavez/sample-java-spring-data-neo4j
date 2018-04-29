@@ -58,20 +58,12 @@ public class UserServiceImplTest {
 
     @Before
     public void setUp(){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setFirstName("Leo");
-        userDTO.setLastName("Smith");
-        userDTO.setDepartmentId("1");
-        userDTO.setId("2");
         Department department = new Department("Test department");
         department.setId(3L);
-        User user = new User();
-        user.setId(1L);
         Result resultEmptySearch = prepareUserMapForEmptySearch();
         Result resultOneParameterSearch = prepareUserMapForSearchWithOneParameter();
         Result resultAllParameterSearch = prepareUserMapForSearchWithAllParameters();
         when(departmentRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(department));
-        when(userRepository.save(Mockito.any(User.class))).thenReturn(user);
         when(session.query(Mockito.contains("MATCH (user:User)-[:IN]->(department:Department) RETURN user, department"),Mockito.anyMap())).thenReturn(resultEmptySearch);
         when(session.query(Mockito.contains("MATCH (user:User)-[:IN]->(department:Department) WHERE ID(department) = 4 RETURN user, department"),Mockito.anyMap())).thenReturn(resultOneParameterSearch);
         when(session.query(Mockito.contains("MATCH (user:User)-[:IN]->(department:Department) WHERE ID(department) = 4 AND LOWER(user.lastName) " +
@@ -142,8 +134,6 @@ public class UserServiceImplTest {
         resultMap.add(objects);
         return new QueryResultModel(resultMap, null);
     }
-
-
 
     @Test
     public void testCreateUserSuccess(){
