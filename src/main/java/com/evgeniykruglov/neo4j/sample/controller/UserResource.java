@@ -37,7 +37,7 @@ public class UserResource {
      * @return object with created Id
      * @throws URISyntaxException
      */
-    @PostMapping("/user")
+    @PostMapping("/users")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) throws URISyntaxException {
         log.debug("REST request to create User : {}", userDTO);
         if (userDTO.getDepartmentId() == null) {
@@ -47,7 +47,7 @@ public class UserResource {
         if (result == null) {
             return ResponseUtil.createBadRequestResponse(ENTITY_NAME,"departmentId is not found","Can't find provided departmentId");
         }
-        return ResponseEntity.created(new URI("/api/user" + result.getId()))
+        return ResponseEntity.created(new URI("/api/users" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId()))
                 .body(result);
     }

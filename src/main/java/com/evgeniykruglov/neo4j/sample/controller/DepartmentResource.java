@@ -39,7 +39,7 @@ public class DepartmentResource {
      * @return object with created Id
      * @throws URISyntaxException
      */
-    @PostMapping("/department")
+    @PostMapping("/departments")
     public ResponseEntity<DepartmentDTO> createDepartment(@RequestBody DepartmentDTO departmentDTO) throws URISyntaxException {
         log.debug("REST request to create Department : {}", departmentDTO);
         if (departmentDTO.getName() == null) {
