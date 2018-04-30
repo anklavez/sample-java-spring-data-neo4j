@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 
 /**
- * @author Evgeniy Kruglov
  * Utility class for HTTP headers creation.
+ * @author Evgeniy Kruglov
  */
 public class HeaderUtil {
 

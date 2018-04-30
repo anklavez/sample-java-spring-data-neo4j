@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 /**
+ * Service Implementation for managing User
  * @author Evgeniy Kruglov
  */
 @Service
@@ -35,6 +36,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private Session session;
 
+    /**
+     * Create User object
+     * @param userDTO with departmentId
+     * @return userDTO object with create Id
+     */
     @Transactional
     @Override
     public UserDTO createUser(UserDTO userDTO) {
@@ -50,6 +56,13 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    /**
+     * Find users by search parameters
+     * @param departmentId
+     * @param firstName
+     * @param lastName
+     * @return List of found users
+     */
     @Transactional(readOnly = true)
     @Override
     public List<UserDTO> findUsers(String departmentId, String firstName, String lastName) {

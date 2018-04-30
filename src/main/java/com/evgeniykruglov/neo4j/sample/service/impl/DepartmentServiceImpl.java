@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * Service Implementation for managing User
  * @author Evgeniy Kruglov
  */
 @Service
@@ -21,6 +22,11 @@ public class DepartmentServiceImpl implements DepartmentService{
     @Autowired
     private DepartmentRepository departmentRepository;
 
+    /**
+     * Create Department
+     * @param departmentDTO
+     * @return departmendDTO with created Id
+     */
     @Transactional
     @Override
     public DepartmentDTO createDepartment(DepartmentDTO departmentDTO) {

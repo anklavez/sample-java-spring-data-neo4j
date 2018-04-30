@@ -17,6 +17,7 @@ import java.util.Optional;
 
 
 /**
+ * REST controller for managing User
  * @author Evgeniy Kruglov
  */
 @RestController
@@ -30,6 +31,12 @@ public class UserResource {
 
     private static final String ENTITY_NAME = "user";
 
+    /**
+     * POST /user: create User
+     * @param userDTO object with firstName, lastName, departmentId
+     * @return object with created Id
+     * @throws URISyntaxException
+     */
     @PostMapping("/user")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) throws URISyntaxException {
         log.debug("REST request to create User : {}", userDTO);
@@ -45,6 +52,13 @@ public class UserResource {
                 .body(result);
     }
 
+    /**
+     * GET /users: find uders
+     * @param departmentId
+     * @param firstName
+     * @param lastName
+     * @return List of found objects
+     */
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> findUsers(@RequestParam(required = false) String departmentId,
                                                    @RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName){

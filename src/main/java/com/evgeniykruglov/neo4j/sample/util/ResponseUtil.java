@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 /**
- * @author Evgeniy Kruglov
  * Utility class for ResponseEntity creation.
+ * @author Evgeniy Kruglov
  */
 public class ResponseUtil {
 

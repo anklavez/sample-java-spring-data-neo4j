@@ -4,6 +4,7 @@ package com.evgeniykruglov.neo4j.sample.util;
 import java.util.Map;
 
 /**
+ * Helper class for working with Cypher query
  * @author Evgeniy Kruglov
  */
 public class SimpleCypherQueryBuilder {

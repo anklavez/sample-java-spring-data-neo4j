@@ -5,6 +5,7 @@ import com.evgeniykruglov.neo4j.sample.service.dto.UserDTO;
 import java.util.List;
 
 /**
+ * Service Interface for managing User
  * @author Evgeniy Kruglov
  */
 public interface UserService {

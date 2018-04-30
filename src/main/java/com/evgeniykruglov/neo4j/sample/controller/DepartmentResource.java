@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
+ * REST controller for managing Department
  * @author Evgeniy Kruglov
  */
 @RestController
@@ -32,6 +33,12 @@ public class DepartmentResource {
         this.departmentService = departmentService;
     }
 
+    /**
+     * POST /department: create Department
+     * @param departmentDTO object with department name
+     * @return object with created Id
+     * @throws URISyntaxException
+     */
     @PostMapping("/department")
     public ResponseEntity<DepartmentDTO> createDepartment(@RequestBody DepartmentDTO departmentDTO) throws URISyntaxException {
         log.debug("REST request to create Department : {}", departmentDTO);
