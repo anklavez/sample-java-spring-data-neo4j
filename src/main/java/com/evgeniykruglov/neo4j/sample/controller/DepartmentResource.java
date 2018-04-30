@@ -46,7 +46,7 @@ public class DepartmentResource {
             return ResponseUtil.createBadRequestResponse(ENTITY_NAME,"department name is null","Department should have a name");
         }
         DepartmentDTO result = departmentService.createDepartment(departmentDTO);
-        return ResponseEntity.created(new URI("/api/v1/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/departments/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId()))
                 .body(result);
     }
